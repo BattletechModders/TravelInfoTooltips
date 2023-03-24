@@ -1,7 +1,7 @@
 ﻿using BattleTech;
 using BattleTech.UI;
 using BattleTech.UI.Tooltips;
-using Harmony;
+using HarmonyLib;
 using Localize;
 using Newtonsoft.Json;
 using System;
@@ -92,7 +92,7 @@ namespace TravelInfoTooltips{
       Log.Err?.TWL(0, "Initing... " + directory + " version: " + Assembly.GetExecutingAssembly().GetName().Version, true);
       try {
         Core.settings = JsonConvert.DeserializeObject<TravelInfoTooltips.Settings>(settingsJson);
-        var harmony = HarmonyInstance.Create("ru.kmission.travelinfotooltips");
+        var harmony = new Harmony("ru.kmission.travelinfotooltips");
         harmony.PatchAll(Assembly.GetExecutingAssembly());
       } catch (Exception e) {
         Log.LogWrite(e.ToString(), true);
